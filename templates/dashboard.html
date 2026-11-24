@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudWatchtower | Infrastructure Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">CW</span><div><strong>CloudWatchtower</strong><small>Infrastructure observability</small></div></div>
+      <div class="top-status"><span class="pulse"></span><span id="overall-status">Checking server</span></div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div><p class="eyebrow">OVERVIEW / INFRASTRUCTURE</p><h1>Server monitoring</h1>
+          <p class="subtext">Live resource utilization and host health at a glance.</p></div>
+        <div class="updated">Last updated <strong id="last-updated">—</strong></div>
+      </section>
+
+      <section class="summary-grid">
+        <article class="metric-card"><div class="card-head"><span>CPU utilization</span><span class="metric-icon">CPU</span></div><div class="metric-value"><span id="cpu">—</span><small>%</small></div><div class="track"><span id="cpu-bar"></span></div><p class="card-foot">Processor usage</p></article>
+        <article class="metric-card"><div class="card-head"><span>Memory utilization</span><span class="metric-icon">RAM</span></div><div class="metric-value"><span id="memory">—</span><small>%</small></div><div class="track"><span id="memory-bar"></span></div><p class="card-foot" id="memory-detail">Used / total memory</p></article>
+        <article class="metric-card"><div class="card-head"><span>Disk utilization</span><span class="metric-icon">DISK</span></div><div class="metric-value"><span id="disk">—</span><small>%</small></div><div class="track"><span id="disk-bar"></span></div><p class="card-foot" id="disk-detail">Used / total storage</p></article>
+      </section>
+
+      <section class="lower-grid">
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">HOST INFORMATION</p><h2>Server details</h2></div><span class="pill">EC2-ready</span></div>
+          <div class="detail-row"><span>Hostname</span><strong id="hostname">{{ hostname }}</strong></div>
+          <div class="detail-row"><span>Operating system</span><strong id="platform">—</strong></div>
+          <div class="detail-row"><span>System uptime</span><strong id="uptime">—</strong></div>
+          <div class="detail-row"><span>Application health</span><strong class="healthy" id="app-health">Checking</strong></div>
+        </article>
+        <article class="panel"><div class="panel-heading"><div><p class="eyebrow">OPERATIONS</p><h2>Monitoring status</h2></div></div>
+          <div class="operation"><span class="operation-dot"></span><div><strong>Metrics collector</strong><small>psutil · local host metrics</small></div><b id="collector-status">Starting</b></div>
+          <div class="operation"><span class="operation-dot"></span><div><strong>SQLite database</strong><small>Metric snapshots</small></div><b>Enabled</b></div>
+          <div class="operation"><span class="operation-dot muted"></span><div><strong>CloudWatch integration</strong><small>Planned in AWS deployment phase</small></div><b class="planned">Planned</b></div>
+          <div class="operation"><span class="operation-dot muted"></span><div><strong>Prometheus / Grafana</strong><small>Planned in monitoring phase</small></div><b class="planned">Planned</b></div>
+        </article>
+      </section>
+      <footer>CloudWatchtower · Learning project · Refreshes every 10 seconds</footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
